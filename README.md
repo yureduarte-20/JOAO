@@ -27,3 +27,13 @@ Na primeira tentativa, quando os logs pararem de aparecer pressione `CTRL + C` e
 ```sh
 docker compose up --build
 ```
+
+## Rodar Front-end
+Primeiro instale as dependencias
+```sh
+yarn
+```
+em seguida rode o comando:
+```
+yarn dev
+```
