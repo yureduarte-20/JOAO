@@ -158,7 +158,7 @@ export class UserController {
     await this.userRepository.deleteById(id);
   }
 
-  @get('/profile')
+  @get('/users/profile')
   @response(200, {
     description: 'User model instance',
     content: {
