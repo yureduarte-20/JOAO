@@ -6,7 +6,7 @@ O projeto descrito neste repositório é se refere ao projeto final de disciplin
 Na pasta **backend** contém a API desenvolvida de forma distribuída, enquanto o **front-end** contém a interface com o usuário que se comunica com o backend. 
 
 ## Condições iniciais
-Rodar para configurar as variáveis de ambiente (linux)
+Copiar os arquivos .env.example para .env, estes arquivos são responsáveis por determinar as variáveis de ambiente do console para a configuração da aplicação.
 ```sh
     cp ./backend/user-service/.env.example ./backend/user-service/.env 
     cp ./backend/chat-service/.env.example ./backend/chat-service/.env 
@@ -16,6 +16,15 @@ Rodar para configurar as variáveis de ambiente (linux)
 
 ## Instruçoes
 Mais intruções na pasta backend
+
+## Requisitos
+### Windows
+
+- [Docker](https://www.docker.com/get-started/)
+- [wsl](https://learn.microsoft.com/pt-br/windows/wsl/install)
+   
+### Linux
+- [Docker](https://docs.docker.com/engine/install/ubuntu/)
 
 ### Rodar Backend
 é Necessário rodar duas vezes a aplicação com o comando:
