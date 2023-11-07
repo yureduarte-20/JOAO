@@ -27,3 +27,5 @@ Na primeira tentativa, quando os logs pararem de aparecer pressione `CTRL + C` e
 ```sh
 docker compose up --build
 ```
+#Arquitetura
+![image](https://github.com/yureduarte-20/trabalho-sistemas-distribuidos/assets/60445477/0a9b8721-41b3-4ef4-8bc1-b864a4a79a99)
