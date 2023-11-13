@@ -27,7 +27,7 @@ Mais intruções na pasta backend
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 
 ### Rodar Backend
-é Necessário rodar duas vezes a aplicação com o comando:
+Sigas as instruções do ReadME na Pasta backend para gerar as chaves privadas e publicas de criptografia e depois será Necessário rodar duas vezes a aplicação com o comando:
 ```sh
 docker compose up --build
 ```
