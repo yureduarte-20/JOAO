@@ -37,14 +37,14 @@ export type CustomUserProfile = {
     roles: Responsability[],
     responsibilities: Responsability[]
   }
-const publicKey = fs.readFileSync(process.env.PUBLIC_KEY_PATH ?? 'public_key.pem').toString();
+
 
 export type Credentials = {
     email: string;
     password: string;
 }
 export namespace TokenServiceConstants {
-    export const TOKEN_SECRET_VALUE = publicKey;
+    export const TOKEN_SECRET_VALUE = 'chave_secreta';
     export const TOKEN_EXPIRES_IN_VALUE = '7h';
 }
 export namespace TokenServiceBindings {

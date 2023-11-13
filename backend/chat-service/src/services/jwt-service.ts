@@ -29,7 +29,7 @@ export class JWTService {
     try {
       const token = _jwt.sign(userProfile, this.jwtSecret, {
         expiresIn: this.expiresSecret,
-        algorithm: 'RS256',
+
       })
 
       return token;
@@ -51,7 +51,7 @@ export class JWTService {
     let userProfile
     try {
       const decryptedToken: any = await verifyAsync(token, this.jwtSecret, {
-        algorithms: ['RS256']
+
       });
 
       userProfile = {

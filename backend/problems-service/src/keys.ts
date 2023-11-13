@@ -55,14 +55,13 @@ export namespace QueueListenerAdapterBindinds {
     export const QUEUE_LISTENER_ADAPTER = BindingKey.create<QueueListenerAdapter>('adapters.queue')
 }
 
-const publicKey = fs.readFileSync(process.env.PUBLIC_KEY_PATH ?? 'public_key.pem').toString();
 
 export type Credentials = {
     email: string;
     password: string;
 }
 export namespace TokenServiceConstants {
-    export const TOKEN_SECRET_VALUE = publicKey;
+    export const TOKEN_SECRET_VALUE = 'chave_secreta';
     export const TOKEN_EXPIRES_IN_VALUE = '7h';
 }
 export namespace TokenServiceBindings {

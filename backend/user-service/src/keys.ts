@@ -19,14 +19,13 @@ import { TokenService, UserService } from '@loopback/authentication';
 import { BindingKey } from '@loopback/core';
 import { User } from './models';
 import fs from 'fs'
-const privateKey = fs.readFileSync(process.env.PRIVATE_KEY_PATH ?? 'private_key.pem').toString();
 
 export type Credentials = {
   email: string;
   password: string;
 }
 export namespace TokenServiceConstants {
-  export const TOKEN_SECRET_VALUE = privateKey;
+  export const TOKEN_SECRET_VALUE = 'chave_secreta';
   export const TOKEN_EXPIRES_IN_VALUE = '7h';
 }
 export namespace TokenServiceBindings {
