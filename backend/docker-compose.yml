@@ -1,9 +1,36 @@
 version: "3.8"
 services:
+  mongodb:
+    image: mongo
+    container_name: mongo_db_joao
+    volumes:
+      - ./mongo-docker/mongo-data:/data/db
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    env_file: ./mongo-docker/.env
+    networks:
+      - joao_default
+
+  mongo_seed:
+    restart: "no"
+    
+    build:
+      context: ./mongo-docker
+      args:
+        - MONGO_HOST=mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - joao_default
+    env_file: ./mongo-docker/.env
 
   rabbitmq-queue-service:
     image: rabbitmq:3.11-management
     container_name: rabbitmq
+    
+    restart: on-failure
     healthcheck:
       test: rabbitmq-diagnostics check_port_connectivity
       interval: 3s
@@ -28,7 +55,9 @@ services:
       - "PROBLEMS_SERVICE_URL=http://problems-service:3002"
       - "CHAT_SERVICE_URL=http://chat-service:3003"
       - "API_GATEWAY_PORT=3005"
+      
     container_name: joao-api-gateway-container
+    restart: on-failure
     depends_on:
       - joao-user-service
       - rabbitmq-queue-service
@@ -59,12 +88,15 @@ services:
       - joao_default
     expose:
       - "3001"
+    restart: on-failure
+
 
   problems-service:
     image: joao-problems-service
     build:
       context: ./problems-service
       dockerfile: Dockerfile
+    restart: on-failure
     environment:
       - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
       - "PORT=3002"
@@ -92,6 +124,7 @@ services:
     environment:
       - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
     container_name: joao-api-executer-service
+    restart: on-failure
     depends_on:
       rabbitmq-queue-service:
         condition: service_healthy
@@ -104,6 +137,7 @@ services:
 
   chat-service:
     image: joao-chat-service
+    restart: on-failure
     build:
       context: ./chat-service
       dockerfile: Dockerfile
@@ -126,31 +160,7 @@ services:
     networks:
       - joao_default
 
-  mongodb:
-    image: mongo
-    container_name: mongo_db_joao
-    volumes:
-      - ./mongo-docker/mongo-data:/data/db
-    ports:
-      - 27017:27017
-    expose:
-      - 27017
-    env_file: ./mongo-docker/.env
-    networks:
-      - joao_default
 
-  mongo_seed:
-    restart: 'no'
-    build:
-      context: ./mongo-docker
-      args:
-        - MONGO_HOST=mongodb
-    depends_on:
-      - mongodb
-      
-    networks:
-      - joao_default
-    env_file: ./mongo-docker/.env
 networks:
   joao_default:
     driver: bridge

@@ -3,7 +3,7 @@ import NodeJSService from './utils/nodejs'
 import { writeFileSync, mkdirSync, unlink } from 'fs'
 const nodejsService = new NodeJSService()
 function createTmpScript(basePath: string, fileName: string, data: string) {
-    // mkdirSync(basePath, { recursive: true })
+    mkdirSync(basePath, { recursive: true })
     writeFileSync(`${basePath.trim()}/${fileName.trim()}`, data)
 }
 
