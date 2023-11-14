@@ -22,29 +22,26 @@ Mais intruções na pasta backend
 
 - [Docker](https://www.docker.com/get-started/)
 - [wsl](https://learn.microsoft.com/pt-br/windows/wsl/install)
+- [Node v16](https://nodejs.org/en/blog/release/v16.16.0)
    
 ### Linux
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
+- [Node v16](https://nodejs.org/en/blog/release/v16.16.0)
 
 ### Rodar Backend
 Sigas as instruções do ReadME na Pasta backend para gerar as chaves privadas e publicas de criptografia e depois será Necessário rodar duas vezes a aplicação com o comando:
 ```sh
 docker compose up --build
-```
-A primeira para configurar o mongo, a segunda para rodar a aplicação.
-Na primeira tentativa, quando os logs pararem de aparecer pressione `CTRL + C` e novamente rode o comando:
-```sh
-docker compose up --build
-```
+
 
 ## Rodar Front-end
 Primeiro instale as dependencias
 ```sh
-yarn
+npm i
 ```
 em seguida rode o comando:
 ```
-yarn dev
+npm run dev
 ```
 ## Arquitetura
 
