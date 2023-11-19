@@ -1,0 +1,3731 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "JOAO Editor de Blocos",
+      "version": "1.0.0",
+      "description": "API Gateway",
+      "contact": {
+        "name": "Yure Samarone",
+        "email": "yuresamarone34@gmail.com"
+      }
+    },
+    "paths": {
+      "/admin/users/count": {
+        "get": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "count",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "User.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<User>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdminController.count"
+        }
+      },
+      "/admin/users/{id}": {
+        "put": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "User PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "AdminController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "User PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "AdminController.updateById"
+        },
+        "get": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "findById",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdminController.findById"
+        },
+        "delete": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "User DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "AdminController.deleteById"
+        }
+      },
+      "/admin/users": {
+        "post": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "create",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewUser"
+                }
+              }
+            }
+          },
+          "operationId": "AdminController.create"
+        },
+        "patch": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "User.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<User>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPartial"
+                }
+              }
+            }
+          },
+          "operationId": "AdminController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "AdminController",
+          "x-operation-name": "find",
+          "tags": [
+            "AdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of User model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdminController.find"
+        }
+      },
+      "/login": {
+        "post": {
+          "x-controller-name": "SecureController",
+          "x-operation-name": "checkPassword",
+          "tags": [
+            "SecureController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "password",
+                    "email"
+                  ]
+                }
+              }
+            }
+          },
+          "operationId": "SecureController.checkPassword"
+        }
+      },
+      "/ping": {
+        "get": {
+          "x-controller-name": "PingController",
+          "x-operation-name": "ping",
+          "tags": [
+            "PingController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Ping Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PingResponse"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PingController.ping"
+        }
+      },
+      "/signup": {
+        "post": {
+          "x-controller-name": "SecureController",
+          "x-operation-name": "create",
+          "tags": [
+            "SecureController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewUser"
+                }
+              }
+            }
+          },
+          "operationId": "SecureController.create"
+        }
+      },
+      "/users/count": {
+        "get": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "count",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "User.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<User>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "UserController.count"
+        }
+      },
+      "/users/profile": {
+        "get": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "profile",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "UserController.profile"
+        }
+      },
+      "/users/{id}": {
+        "put": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "User PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "UserController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "User PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "UserController.updateById"
+        },
+        "get": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "findById",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "UserController.findById"
+        },
+        "delete": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "User DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "UserController.deleteById"
+        }
+      },
+      "/users": {
+        "patch": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "200": {
+              "description": "User PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "User.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<User>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPartial"
+                }
+              }
+            }
+          },
+          "operationId": "UserController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "UserController",
+          "x-operation-name": "find",
+          "tags": [
+            "UserController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of User model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "UserController.find"
+        }
+      },
+      "/admin/problems/count": {
+        "get": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "count",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Problem.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Problem>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemsAdminController.count"
+        }
+      },
+      "/admin/problems/{id}": {
+        "put": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Problem PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "ProblemsAdminController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Problem PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemPartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "ProblemsAdminController.updateById"
+        },
+        "get": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "findById",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProblemWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemsAdminController.findById"
+        },
+        "delete": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Problem DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "ProblemsAdminController.deleteById"
+        }
+      },
+      "/admin/problems": {
+        "post": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "create",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewProblem"
+                }
+              }
+            }
+          },
+          "operationId": "ProblemsAdminController.create"
+        },
+        "patch": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Problem.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Problem>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemPartial"
+                }
+              }
+            }
+          },
+          "operationId": "ProblemsAdminController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "ProblemsAdminController",
+          "x-operation-name": "find",
+          "tags": [
+            "ProblemsAdminController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Problem model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProblemWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemsAdminController.find"
+        }
+      },
+      "/advisor/problems/count": {
+        "get": {
+          "x-controller-name": "AdvisorProblemsController",
+          "x-operation-name": "count",
+          "tags": [
+            "AdvisorProblemsController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Problem.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Problem>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdvisorProblemsController.count"
+        }
+      },
+      "/advisor/problems/{id}": {
+        "get": {
+          "x-controller-name": "AdvisorProblemsController",
+          "x-operation-name": "findById",
+          "tags": [
+            "AdvisorProblemsController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProblemWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdvisorProblemsController.findById"
+        }
+      },
+      "/advisor/problems": {
+        "get": {
+          "x-controller-name": "AdvisorProblemsController",
+          "x-operation-name": "find",
+          "tags": [
+            "AdvisorProblemsController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Problem model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProblemWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdvisorProblemsController.find"
+        }
+      },
+  
+      "/problems/count": {
+        "get": {
+          "x-controller-name": "ProblemsControllerController",
+          "x-operation-name": "count",
+          "tags": [
+            "ProblemsControllerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Problem.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Problem>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemsControllerController.count"
+        }
+      },
+      "/problems/{id}/submissions": {
+        "post": {
+          "x-controller-name": "ProblemSubmissionController",
+          "x-operation-name": "create",
+          "tags": [
+            "ProblemSubmissionController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Submission"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewSubmissionInProblem"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "ProblemSubmissionController.create"
+        }
+      },
+      "/problems/{id}": {
+        "get": {
+          "x-controller-name": "ProblemsControllerController",
+          "x-operation-name": "findById",
+          "tags": [
+            "ProblemsControllerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Problem model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProblemWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemsControllerController.findById"
+        }
+      },
+      "/problems": {
+        "get": {
+          "x-controller-name": "ProblemsControllerController",
+          "x-operation-name": "find",
+          "tags": [
+            "ProblemsControllerController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Problem model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProblemWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Problem.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemsControllerController.find"
+        }
+      },
+      "/submissions/{id}": {
+        "get": {
+          "x-controller-name": "ProblemSubmissionController",
+          "x-operation-name": "findById",
+          "tags": [
+            "ProblemSubmissionController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Problem has many Submission",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Submission"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemSubmissionController.findById"
+        }
+      },
+      "/submissions": {
+        "get": {
+          "x-controller-name": "ProblemSubmissionController",
+          "x-operation-name": "find",
+          "tags": [
+            "ProblemSubmissionController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Problem has many Submission",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Submission"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "ProblemSubmissionController.find"
+        }
+      },
+          "/admin/doubts/count": {
+        "get": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "count",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Doubt.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Doubt>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdminAdvisorController.count"
+        }
+      },
+      "/admin/doubts/{id}": {
+        "put": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "replaceById",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Doubt PUT success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Doubt"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "AdminAdvisorController.replaceById"
+        },
+        "patch": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "updateById",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Doubt PATCH success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoubtPartial"
+                }
+              }
+            },
+            "x-parameter-index": 1
+          },
+          "operationId": "AdminAdvisorController.updateById"
+        },
+        "get": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "findById",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/DoubtWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdminAdvisorController.findById"
+        },
+        "delete": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Doubt DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "AdminAdvisorController.deleteById"
+        }
+      },
+      "/admin/doubts": {
+        "post": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "create",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewDoubt"
+                }
+              }
+            }
+          },
+          "operationId": "AdminAdvisorController.create"
+        },
+        "patch": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "updateAll",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt PATCH success count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Doubt.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Doubt>"
+                  }
+                }
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoubtPartial"
+                }
+              }
+            }
+          },
+          "operationId": "AdminAdvisorController.updateAll"
+        },
+        "get": {
+          "x-controller-name": "AdminAdvisorController",
+          "x-operation-name": "find",
+          "tags": [
+            "AdminAdvisorController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Doubt model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/DoubtWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdminAdvisorController.find"
+        }
+      },
+      "/advisor/doubts/count": {
+        "get": {
+          "x-controller-name": "AdvisorDoubtController",
+          "x-operation-name": "count",
+          "tags": [
+            "AdvisorDoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Doubt.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Doubt>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdvisorDoubtController.count"
+        }
+      },
+      "/advisor/doubts/subscribe/{doubtId}": {
+        "post": {
+          "x-controller-name": "AdvisorDoubtController",
+          "x-operation-name": "subscribe",
+          "tags": [
+            "AdvisorDoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "doubtId",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "AdvisorDoubtController.subscribe"
+        }
+      },
+      "/advisor/doubts/{id}": {
+        "get": {
+          "x-controller-name": "AdvisorDoubtController",
+          "x-operation-name": "findById",
+          "tags": [
+            "AdvisorDoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/DoubtWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt.Filter"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdvisorDoubtController.findById"
+        },
+        "delete": {
+          "x-controller-name": "AdvisorDoubtController",
+          "x-operation-name": "deleteById",
+          "tags": [
+            "AdvisorDoubtController"
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "description": "Doubt DELETE success"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "AdvisorDoubtController.deleteById"
+        }
+      },
+      "/advisor/doubts": {
+        "get": {
+          "x-controller-name": "AdvisorDoubtController",
+          "x-operation-name": "findAllOpen",
+          "tags": [
+            "AdvisorDoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Doubt model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/DoubtWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "AdvisorDoubtController.findAllOpen"
+        }
+      },
+      "/doubt/problem/{id}": {
+        "post": {
+          "x-controller-name": "DoubtController",
+          "x-operation-name": "create",
+          "tags": [
+            "DoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "tagDoubt": {
+                      "enum": [
+                        "loops",
+                        "condicionais",
+                        "variaveis",
+                        "entrada_saida",
+                        "outros"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "DoubtController.create"
+        }
+      },
+      "/doubts/close/{doubtId}": {
+        "post": {
+          "x-controller-name": "DoubtController",
+          "x-operation-name": "close",
+          "tags": [
+            "DoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "doubtId",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "operationId": "DoubtController.close"
+        }
+      },
+      "/doubts/count": {
+        "get": {
+          "x-controller-name": "DoubtController",
+          "x-operation-name": "count",
+          "tags": [
+            "DoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model count",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/loopback.Count"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "where",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "title": "Doubt.WhereFilter",
+                    "additionalProperties": true,
+                    "x-typescript-type": "@loopback/repository#Where<Doubt>"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "DoubtController.count"
+        }
+      },
+      "/doubts/{doubtId}": {
+        "post": {
+          "x-controller-name": "DoubtController",
+          "x-operation-name": "appendMessage",
+          "tags": [
+            "DoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "doubtId",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "operationId": "DoubtController.appendMessage"
+        }
+      },
+      "/doubts/{id}": {
+        "get": {
+          "x-controller-name": "DoubtController",
+          "x-operation-name": "findById",
+          "tags": [
+            "DoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Doubt model instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/DoubtWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "DoubtController.findById"
+        }
+      },
+      "/doubts": {
+        "get": {
+          "x-controller-name": "DoubtController",
+          "x-operation-name": "find",
+          "tags": [
+            "DoubtController"
+          ],
+          "responses": {
+            "200": {
+              "description": "Array of Doubt model instances",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/DoubtWithRelations"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Doubt.Filter1"
+                  }
+                }
+              }
+            }
+          ],
+          "operationId": "DoubtController.find"
+        }
+      }
+  
+    },
+    "components": {
+      "securitySchemes": {
+        "jwt": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "schemas": {
+        "UserWithRelations": {
+          "title": "UserWithRelations",
+          "type": "object",
+          "description": "(tsType: UserWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "responsibilities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "service": {
+                    "type": "string",
+                    "enum": [
+                      "USER_SERVICE",
+                      "PROBLEM_SERVICE",
+                      "CHAT_SERVICE",
+                      "JUDGE_SERVICE"
+                    ]
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "ADMIN",
+                      "ADVISOR",
+                      "STUDENT"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "password"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "UserWithRelations"
+        },
+        "UserPartial": {
+          "title": "UserPartial",
+          "type": "object",
+          "description": "(tsType: Partial<User>, schemaOptions: { partial: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "responsibilities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "service": {
+                    "type": "string",
+                    "enum": [
+                      "USER_SERVICE",
+                      "PROBLEM_SERVICE",
+                      "CHAT_SERVICE",
+                      "JUDGE_SERVICE"
+                    ]
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "ADMIN",
+                      "ADVISOR",
+                      "STUDENT"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "Partial<User>"
+        },
+        "User": {
+          "title": "User",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "responsibilities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "service": {
+                    "type": "string",
+                    "enum": [
+                      "USER_SERVICE",
+                      "PROBLEM_SERVICE",
+                      "CHAT_SERVICE",
+                      "JUDGE_SERVICE"
+                    ]
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "ADMIN",
+                      "ADVISOR",
+                      "STUDENT"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "password"
+          ],
+          "additionalProperties": false
+        },
+        "NewUser": {
+          "title": "NewUser",
+          "type": "object",
+          "description": "(tsType: Omit<User, 'id'>, schemaOptions: { title: 'NewUser', exclude: [ 'id' ] })",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "responsibilities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "service": {
+                    "type": "string",
+                    "enum": [
+                      "USER_SERVICE",
+                      "PROBLEM_SERVICE",
+                      "CHAT_SERVICE",
+                      "JUDGE_SERVICE"
+                    ]
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "ADMIN",
+                      "ADVISOR",
+                      "STUDENT"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "password"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "Omit<User, 'id'>"
+        },
+        "loopback.Count": {
+          "type": "object",
+          "title": "loopback.Count",
+          "x-typescript-type": "@loopback/repository#Count",
+          "properties": {
+            "count": {
+              "type": "number"
+            }
+          }
+        },
+        "User.Filter": {
+          "type": "object",
+          "title": "User.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "boolean"
+                    },
+                    "password": {
+                      "type": "boolean"
+                    },
+                    "responsibilities": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "name",
+                      "email",
+                      "password",
+                      "responsibilities"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "User.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<User>"
+        },
+        "User.Filter1": {
+          "type": "object",
+          "title": "User.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "title": "User.WhereFilter",
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "boolean"
+                    },
+                    "password": {
+                      "type": "boolean"
+                    },
+                    "responsibilities": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "name",
+                      "email",
+                      "password",
+                      "responsibilities"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "User.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<User>"
+        },
+        "PingResponse": {
+          "type": "object",
+          "title": "PingResponse",
+          "properties": {
+            "greeting": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "SubmissionWithRelations": {
+          "title": "SubmissionWithRelations",
+          "type": "object",
+          "description": "(tsType: SubmissionWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "blocksXml": {
+              "type": "string"
+            },
+            "error": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "successfulRate": {
+              "type": "number"
+            },
+            "userURI": {
+              "type": "string"
+            },
+            "problemId": {
+              "type": "string"
+            },
+            "problem": {
+              "$ref": "#/components/schemas/ProblemWithRelations"
+            }
+          },
+          "required": [
+            "blocksXml",
+            "userURI"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "SubmissionWithRelations"
+        },
+        "ProblemWithRelations": {
+          "title": "ProblemWithRelations",
+          "type": "object",
+          "description": "(tsType: ProblemWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "testCases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "outputs": {
+                    "type": "string"
+                  },
+                  "validationOutputRegex": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "outputs"
+                ]
+              }
+            },
+            "createdByURI": {
+              "type": "string"
+            },
+            "dificultyLevel": {
+              "type": "string"
+            },
+            "demonstrations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "demonstrationInputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "demonstrationOutput": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "demonstrationOutput"
+                ]
+              }
+            },
+            "submissions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SubmissionWithRelations"
+              }
+            }
+          },
+          "required": [
+            "title",
+            "testCases",
+            "createdByURI",
+            "dificultyLevel",
+            "demonstrations"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "ProblemWithRelations"
+        },
+        "Submission": {
+          "title": "Submission",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "blocksXml": {
+              "type": "string"
+            },
+            "error": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "successfulRate": {
+              "type": "number"
+            },
+            "userURI": {
+              "type": "string"
+            },
+            "problemId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "blocksXml",
+            "userURI"
+          ],
+          "additionalProperties": false
+        },
+        "NewSubmissionInProblem": {
+          "title": "NewSubmissionInProblem",
+          "type": "object",
+          "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Submission, 'id' | 'userURI'>, 'problemId'>, schemaOptions: { title: 'NewSubmissionInProblem', exclude: [ 'id', 'userURI' ], optional: [ 'problemId' ] })",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "blocksXml": {
+              "type": "string"
+            },
+            "error": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "successfulRate": {
+              "type": "number"
+            },
+            "problemId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "blocksXml"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Submission, 'id' | 'userURI'>, 'problemId'>"
+        },
+        "Problem": {
+          "title": "Problem",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "testCases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "outputs": {
+                    "type": "string"
+                  },
+                  "validationOutputRegex": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "outputs"
+                ]
+              }
+            },
+            "createdByURI": {
+              "type": "string"
+            },
+            "dificultyLevel": {
+              "type": "string"
+            },
+            "demonstrations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "demonstrationInputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "demonstrationOutput": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "demonstrationOutput"
+                ]
+              }
+            }
+          },
+          "required": [
+            "title",
+            "testCases",
+            "createdByURI",
+            "dificultyLevel",
+            "demonstrations"
+          ],
+          "additionalProperties": false
+        },
+        "NewProblem": {
+          "title": "NewProblem",
+          "type": "object",
+          "description": "(tsType: Omit<Problem, 'id' | 'createdByURI'>, schemaOptions: { title: 'NewProblem', exclude: [ 'id', 'createdByURI' ] })",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "testCases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "outputs": {
+                    "type": "string"
+                  },
+                  "validationOutputRegex": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "outputs"
+                ]
+              }
+            },
+            "dificultyLevel": {
+              "type": "string"
+            },
+            "demonstrations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "demonstrationInputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "demonstrationOutput": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "demonstrationOutput"
+                ]
+              }
+            }
+          },
+          "required": [
+            "title",
+            "testCases",
+            "dificultyLevel",
+            "demonstrations"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "Omit<Problem, 'id' | 'createdByURI'>"
+        },
+        "ProblemPartial": {
+          "title": "ProblemPartial",
+          "type": "object",
+          "description": "(tsType: Partial<Problem>, schemaOptions: { partial: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "testCases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "outputs": {
+                    "type": "string"
+                  },
+                  "validationOutputRegex": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "outputs"
+                ]
+              }
+            },
+            "createdByURI": {
+              "type": "string"
+            },
+            "dificultyLevel": {
+              "type": "string"
+            },
+            "demonstrations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "demonstrationInputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "demonstrationOutput": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "demonstrationOutput"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "Partial<Problem>"
+        },
+  
+        "Problem.ScopeFilter": {
+          "type": "object",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": true
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "include": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": false,
+          "title": "Problem.ScopeFilter"
+        },
+        "Problem.IncludeFilter.Items": {
+          "title": "Problem.IncludeFilter.Items",
+          "type": "object",
+          "properties": {
+            "relation": {
+              "type": "string",
+              "enum": [
+                "submissions"
+              ]
+            },
+            "scope": {
+              "$ref": "#/components/schemas/Problem.ScopeFilter"
+            }
+          }
+        },
+        "Problem.Filter": {
+          "type": "object",
+          "title": "Problem.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": "boolean"
+                    },
+                    "testCases": {
+                      "type": "boolean"
+                    },
+                    "createdByURI": {
+                      "type": "boolean"
+                    },
+                    "dificultyLevel": {
+                      "type": "boolean"
+                    },
+                    "demonstrations": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "title",
+                      "description",
+                      "testCases",
+                      "createdByURI",
+                      "dificultyLevel",
+                      "demonstrations"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Problem.Fields"
+            },
+            "include": {
+              "title": "Problem.IncludeFilter",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/Problem.IncludeFilter.Items"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Problem>"
+        },
+        "Problem.Filter1": {
+          "type": "object",
+          "title": "Problem.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "title": "Problem.WhereFilter",
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": "boolean"
+                    },
+                    "testCases": {
+                      "type": "boolean"
+                    },
+                    "createdByURI": {
+                      "type": "boolean"
+                    },
+                    "dificultyLevel": {
+                      "type": "boolean"
+                    },
+                    "demonstrations": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "title",
+                      "description",
+                      "testCases",
+                      "createdByURI",
+                      "dificultyLevel",
+                      "demonstrations"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Problem.Fields"
+            },
+            "include": {
+              "title": "Problem.IncludeFilter",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/Problem.IncludeFilter.Items"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Problem>"
+        },
+        "Doubt": {
+          "title": "Doubt",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "problemURI": {
+              "type": "string"
+            },
+            "problemTitle": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE",
+                "ON_GOING",
+                "OPEN"
+              ]
+            },
+            "tag": {
+              "type": "string"
+            },
+            "advisorURI": {
+              "type": "string"
+            },
+            "advisorName": {
+              "type": "string"
+            },
+            "studentURI": {
+              "type": "string"
+            },
+            "studentName": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "userURI": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message",
+                  "userURI"
+                ]
+              }
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "closedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "problemURI",
+            "problemTitle",
+            "studentURI",
+            "studentName"
+          ],
+          "additionalProperties": false
+        },
+        "NewDoubt": {
+          "title": "NewDoubt",
+          "type": "object",
+          "description": "(tsType: Omit<Doubt, 'id'>, schemaOptions: { title: 'NewDoubt', exclude: [ 'id' ] })",
+          "properties": {
+            "problemURI": {
+              "type": "string"
+            },
+            "problemTitle": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE",
+                "ON_GOING",
+                "OPEN"
+              ]
+            },
+            "tag": {
+              "type": "string"
+            },
+            "advisorURI": {
+              "type": "string"
+            },
+            "advisorName": {
+              "type": "string"
+            },
+            "studentURI": {
+              "type": "string"
+            },
+            "studentName": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "userURI": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message",
+                  "userURI"
+                ]
+              }
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "closedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "problemURI",
+            "problemTitle",
+            "studentURI",
+            "studentName"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "Omit<Doubt, 'id'>"
+        },
+        "DoubtWithRelations": {
+          "title": "DoubtWithRelations",
+          "type": "object",
+          "description": "(tsType: DoubtWithRelations, schemaOptions: { includeRelations: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "problemURI": {
+              "type": "string"
+            },
+            "problemTitle": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE",
+                "ON_GOING",
+                "OPEN"
+              ]
+            },
+            "tag": {
+              "type": "string"
+            },
+            "advisorURI": {
+              "type": "string"
+            },
+            "advisorName": {
+              "type": "string"
+            },
+            "studentURI": {
+              "type": "string"
+            },
+            "studentName": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "userURI": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message",
+                  "userURI"
+                ]
+              }
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "closedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "problemURI",
+            "problemTitle",
+            "studentURI",
+            "studentName"
+          ],
+          "additionalProperties": false,
+          "x-typescript-type": "DoubtWithRelations"
+        },
+        "DoubtPartial": {
+          "title": "DoubtPartial",
+          "type": "object",
+          "description": "(tsType: Partial<Doubt>, schemaOptions: { partial: true })",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "problemURI": {
+              "type": "string"
+            },
+            "problemTitle": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "COMPLETE",
+                "ON_GOING",
+                "OPEN"
+              ]
+            },
+            "tag": {
+              "type": "string"
+            },
+            "advisorURI": {
+              "type": "string"
+            },
+            "advisorName": {
+              "type": "string"
+            },
+            "studentURI": {
+              "type": "string"
+            },
+            "studentName": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "userURI": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message",
+                  "userURI"
+                ]
+              }
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "closedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "Partial<Doubt>"
+        },
+  
+        "Doubt.Filter": {
+          "type": "object",
+          "title": "Doubt.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "problemURI": {
+                      "type": "boolean"
+                    },
+                    "problemTitle": {
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "tag": {
+                      "type": "boolean"
+                    },
+                    "advisorURI": {
+                      "type": "boolean"
+                    },
+                    "advisorName": {
+                      "type": "boolean"
+                    },
+                    "studentURI": {
+                      "type": "boolean"
+                    },
+                    "studentName": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "boolean"
+                    },
+                    "messages": {
+                      "type": "boolean"
+                    },
+                    "updatedAt": {
+                      "type": "boolean"
+                    },
+                    "closedAt": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "problemURI",
+                      "problemTitle",
+                      "status",
+                      "tag",
+                      "advisorURI",
+                      "advisorName",
+                      "studentURI",
+                      "studentName",
+                      "createdAt",
+                      "messages",
+                      "updatedAt",
+                      "closedAt"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Doubt.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Doubt>"
+        },
+        "Doubt.Filter1": {
+          "type": "object",
+          "title": "Doubt.Filter",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 100
+            },
+            "skip": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "order": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "where": {
+              "title": "Doubt.WhereFilter",
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "boolean"
+                    },
+                    "problemURI": {
+                      "type": "boolean"
+                    },
+                    "problemTitle": {
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "tag": {
+                      "type": "boolean"
+                    },
+                    "advisorURI": {
+                      "type": "boolean"
+                    },
+                    "advisorName": {
+                      "type": "boolean"
+                    },
+                    "studentURI": {
+                      "type": "boolean"
+                    },
+                    "studentName": {
+                      "type": "boolean"
+                    },
+                    "createdAt": {
+                      "type": "boolean"
+                    },
+                    "messages": {
+                      "type": "boolean"
+                    },
+                    "updatedAt": {
+                      "type": "boolean"
+                    },
+                    "closedAt": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "id",
+                      "problemURI",
+                      "problemTitle",
+                      "status",
+                      "tag",
+                      "advisorURI",
+                      "advisorName",
+                      "studentURI",
+                      "studentName",
+                      "createdAt",
+                      "messages",
+                      "updatedAt",
+                      "closedAt"
+                    ],
+                    "example": "id"
+                  },
+                  "uniqueItems": true
+                }
+              ],
+              "title": "Doubt.Fields"
+            }
+          },
+          "additionalProperties": false,
+          "x-typescript-type": "@loopback/repository#Filter<Doubt>"
+        }
+      } 
+    },
+    "security": [
+      {
+        "jwt": []
+      }
+    ],
+    "servers": [
+      {
+        "url": "http://localhost:3005"
+      }
+    ]
+  }

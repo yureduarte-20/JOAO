@@ -9,5 +9,6 @@ Este projeto é dedicado para o ensino a programação básica utilizando a abor
 - MongoDB
 - Docker
 
+URL do API Docs do Swagger `http://localhost:3005/api-docs`
 
 ![Arquitetura do Sistema](https://user-images.githubusercontent.com/60445477/221367746-25fda647-eae7-462f-ad27-735e0633e284.png)

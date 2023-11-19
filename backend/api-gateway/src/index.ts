@@ -3,11 +3,13 @@ import cors from 'cors'
 import httpProxy from 'express-http-proxy'
 import proxyReqOptDecorator from "./handlers/HeadersHandler";
 import ServersErrors from "./handlers/ServersErrors";
+import swaggerUi from  'swagger-ui-express';
+import openAPIJSON from './openapi.json';
 const PORT = parseInt(process.env.API_GATEWAY_PORT as string) || 3000
 const HOST = '0.0.0.0'
 const app = Express();
-
 function selectProxyHost(req: Request) {
+
     let path = req.path
     if (path.startsWith('/admin') || path.startsWith('/advisor')) {
         path = '/' + path.split('/')[2]
@@ -30,7 +32,8 @@ function selectProxyHost(req: Request) {
 }
 
 app.use(Express.json())
-app.use(cors({ origin: process.env.FRONT_CORS_ORIGIN ?? 'http://localhost:3000' }))
+app.use(cors({ origin: process.env.FRONT_CORS_ORIGIN ?? '*' }))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openAPIJSON, {  }));
 app.use((req, res, next) => {
     return httpProxy(selectProxyHost(req), {
         proxyReqOptDecorator: proxyReqOptDecorator,
