@@ -8,9 +8,9 @@ Na pasta **backend** contém a API desenvolvida de forma distribuída, enquanto 
 ## Condições iniciais
 Copiar os arquivos .env.example para .env, estes arquivos são responsáveis por determinar as variáveis de ambiente do console para a configuração da aplicação.
 ```sh
-    cp ./backend/user-service/.env.example ./backend/user-service/.env 
-    cp ./backend/chat-service/.env.example ./backend/chat-service/.env 
-    cp ./backend/problems-service/.env.example ./backend/problems-service/.env 
+    cp ./backend/user-service/.env.example ./backend/user-service/.env \
+    cp ./backend/chat-service/.env.example ./backend/chat-service/.env \
+    cp ./backend/problems-service/.env.example ./backend/problems-service/.env \
     cp ./backend/mongo-docker/.env.example ./backend/mongo-docker/.env 
 ```
 

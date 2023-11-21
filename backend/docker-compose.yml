@@ -30,7 +30,7 @@ services:
     image: rabbitmq:3.11-management
     container_name: rabbitmq
     
-    restart: on-failure
+    restart: unless-stopped
     healthcheck:
       test: rabbitmq-diagnostics check_port_connectivity
       interval: 3s
@@ -57,7 +57,7 @@ services:
       - "API_GATEWAY_PORT=3005"
       
     container_name: joao-api-gateway-container
-    restart: on-failure
+    restart: unless-stopped
     depends_on:
       - joao-user-service
       - rabbitmq-queue-service
@@ -88,7 +88,7 @@ services:
       - joao_default
     expose:
       - "3001"
-    restart: on-failure
+    restart: unless-stopped
 
 
   problems-service:
@@ -96,7 +96,7 @@ services:
     build:
       context: ./problems-service
       dockerfile: Dockerfile
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
       - "PORT=3002"
@@ -124,7 +124,7 @@ services:
     environment:
       - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
     container_name: joao-api-executer-service
-    restart: on-failure
+    restart: unless-stopped
     depends_on:
       rabbitmq-queue-service:
         condition: service_healthy
@@ -137,7 +137,7 @@ services:
 
   chat-service:
     image: joao-chat-service
-    restart: on-failure
+    restart: unless-stopped
     build:
       context: ./chat-service
       dockerfile: Dockerfile
