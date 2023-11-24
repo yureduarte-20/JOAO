@@ -49,3 +49,6 @@ Posteriormente abra uma aba em seu navegador de preferência no endereço [http:
 ## Arquitetura
 
 ![image](https://github.com/yureduarte-20/trabalho-sistemas-distribuidos/assets/60445477/0a9b8721-41b3-4ef4-8bc1-b864a4a79a99)
+## Diagrama de componentes
+![Diagrama de Componentes](https://github.com/yureduarte-20/JOAO/assets/60445477/70a1731d-78ff-4048-9d35-796011f6106f)
+
