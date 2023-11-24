@@ -1,0 +1,175 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: mongo_db_joao
+    volumes:
+      - ./backend/mongo-docker/mongo-data:/data/db
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    env_file: ./backend/mongo-docker/.env
+    networks:
+      - joao_default
+
+  mongo_seed:
+    restart: "no"
+    
+    build:
+      context: ./backend/mongo-docker
+      args:
+        - MONGO_HOST=mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - joao_default
+    env_file: ./backend/mongo-docker/.env
+
+  rabbitmq-queue-service:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    
+    restart: unless-stopped
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 3s
+      timeout: 10s
+      retries: 5
+    networks:
+    - joao_default
+    expose:
+      - "5672"
+      - "15672"
+    ports:
+      - "5672"
+      - "15672"
+
+  joao-api-gateway:
+    image: joao-api-gateway
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    environment:
+      - "USER_SERVICE_API_URL=http://joao-user-service:3001"
+      - "PROBLEMS_SERVICE_URL=http://problems-service:3002"
+      - "CHAT_SERVICE_URL=http://chat-service:3003"
+      - "API_GATEWAY_PORT=3005"
+      
+    container_name: joao-api-gateway-container
+    restart: unless-stopped
+    depends_on:
+      - joao-user-service
+      - rabbitmq-queue-service
+    ports:
+      - "3005:3005"
+    expose:
+      - "3005"
+    networks:
+      - joao_default
+    volumes:
+      - "./backend/api-gateway/src/:/usr/src/app/src"
+
+  joao-user-service:
+    image: joao-user-service
+    build:
+      context: ./backend/user-service
+      dockerfile: Dockerfile
+    environment:
+      - "PORT=3001"
+    env_file: ./backend/user-service/.env
+    container_name: joao-api-user-service 
+    depends_on:
+      mongodb:
+        condition: service_started
+      mongo_seed:
+        condition: service_started
+    networks:
+      - joao_default
+    expose:
+      - "3001"
+    restart: unless-stopped
+
+
+  problems-service:
+    image: joao-problems-service
+    build:
+      context: ./backend/problems-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
+      - "PORT=3002"
+    env_file: ./backend/problems-service/.env
+    container_name: joao-api-problems-service 
+    depends_on:
+      rabbitmq-queue-service:
+        condition: service_healthy
+      joao-user-service:
+         condition: service_started
+      mongodb:
+        condition: service_started
+      mongo_seed:
+        condition: service_started
+    networks:
+      - joao_default
+    expose:
+      - "3002"
+    
+  executer-service:
+    image: joao-executer-service
+    build:
+      context: ./backend/executer-service
+      dockerfile: Dockerfile
+    environment:
+      - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
+    container_name: joao-api-executer-service
+    restart: unless-stopped
+    depends_on:
+      rabbitmq-queue-service:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      mongo_seed:
+        condition: service_started
+    networks:
+      - joao_default
+
+  chat-service:
+    image: joao-chat-service
+    restart: unless-stopped
+    build:
+      context: ./backend/chat-service
+      dockerfile: Dockerfile
+    environment:
+      - "RABBIT_URL=amqp://rabbitmq-queue-service:5672"
+      - "PORT=3003"
+    env_file: ./backend/chat-service/.env
+    container_name: joao-api-chat-service
+    depends_on:
+      rabbitmq-queue-service:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      joao-user-service:
+         condition: service_started
+      mongo_seed:
+        condition: service_started
+    expose:
+      - "3003"
+    networks:
+      - joao_default
+  front:
+    image: editor-blocos
+    restart: unless-stopped
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    container_name: editor-blocos-container
+    ports:
+      - "3000:80"
+networks:
+  joao_default:
+    driver: bridge
+
+    

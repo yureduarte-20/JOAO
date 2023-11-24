@@ -1,7 +1,7 @@
 import { Card, Container } from "../../../styles/global"
 import { Input } from "../../auth/Login/styled"
 import { Form, InputGroup, Select } from './style'
-import { IDemonstrations, IProblem } from "../ProblemsList"
+
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useRef, useState } from "react"
 import Spinner from "../../../components/Spinner"
@@ -11,9 +11,10 @@ import 'react-quill/dist/quill.snow.css';
 import Button from "../../../components/Button"
 import { Store } from "react-notifications-component"
 import { ButtonSecondary } from "../../../components/BoxQuestion/styled"
+import { IDemonstrations, IProblem } from "types"
 export default (props: any) => {
     const { problemId } = useParams();
-    
+
     const [loading, setLoading] = useState(false);
    // const [problem, setProblem] = useState<IProblem>()
     const api = useAuthenticateApi();
