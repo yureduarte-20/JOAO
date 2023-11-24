@@ -1,5 +1,6 @@
 import { consume, sendToQueue } from './utils/queue'
 import NodeJSService from './utils/nodejs'
+
 import { writeFileSync, mkdirSync, unlink } from 'fs'
 const nodejsService = new NodeJSService()
 function createTmpScript(basePath: string, fileName: string, data: string) {
@@ -13,7 +14,8 @@ function deleteTmpScript(basePath: string, fileName: string) {
         if (err) console.log(`Falhou em deletar ${fileName}`)
     })
 }
-consume('submission:execute', async (data) => {
+consume('submission:execute', async (data, channel) => {
+    channel.prefetch(5);
     if (data) {
         // console.log( JSON.parse(Buffer.from(data.content).toString('utf-8')))
         const json = JSON.parse(Buffer.from(data.content).toString('utf-8'))
@@ -37,6 +39,8 @@ consume('submission:execute', async (data) => {
         await Promise.allSettled(executions)
         deleteTmpScript(basePath, fileName)
         sendToQueue('submission:executed', { submission: json.submission, results: testCasesOutputs })
-
+        channel.ack(data );
+    } else {
+        channel.ackAll()
     }
 })

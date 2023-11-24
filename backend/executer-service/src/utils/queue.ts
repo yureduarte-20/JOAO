@@ -19,10 +19,10 @@ async function sendToQueue(queue: string, message: any) {
         .then((channel: amqplib.Channel) => channel.sendToQueue(queue, Buffer.from(JSON.stringify(message))))
         .catch(err => console.log(err))
 }
-async function consume(queue: string, callback: (msg: amqplib.ConsumeMessage | null) => void) {
+async function consume(queue: string, callback: (msg: amqplib.ConsumeMessage | null, channel : amqplib.Channel) => void) {
     connect()
         .then(channel => createQueue(channel, queue))
-        .then(channel => channel.consume(queue, callback, { noAck:true }))
+        .then(channel => channel.consume(queue, msg => callback(msg, channel), { noAck:false }))
         .catch(err => console.log(err));
 }
 
