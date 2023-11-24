@@ -17,7 +17,7 @@ Copiar os arquivos .env.example para .env, estes arquivos são responsáveis por
 ## Instruçoes
 Mais intruções na pasta backend
 
-## Requisitos
+## Pré requisitos
 ### Windows
 
 - [Docker](https://www.docker.com/get-started/)
@@ -29,20 +29,23 @@ Mais intruções na pasta backend
 - [Node v16](https://nodejs.org/en/blog/release/v16.16.0)
 
 ### Rodar Backend
-Sigas as instruções do ReadME na Pasta backend para gerar as chaves privadas e publicas de criptografia e depois será Necessário rodar duas vezes a aplicação com o comando:
+Com o docker devidamente instalado, rode o comando abaixo na pasta /backend
+
 ```sh
 docker compose up --build
-
+```
 
 ## Rodar Front-end
-Primeiro instale as dependencias
+Na pasta /frontend, com o node devidamente instalado [versão 16](https://nodejs.org/en/blog/release/v16.16.0) rode o comando no terminal abaixo para instalar as dependências de projeto:
 ```sh
-npm i
+npm install
 ```
 em seguida rode o comando:
 ```
 npm run dev
 ```
+
+Posteriormente abra uma aba em seu navegador de preferência no endereço [http://localhost:3000](http://localhost:3000), as especificações do OpenAPI está na  [http://localhost:3005](http://localhost:3005)
 ## Arquitetura
 
 ![image](https://github.com/yureduarte-20/trabalho-sistemas-distribuidos/assets/60445477/0a9b8721-41b3-4ef4-8bc1-b864a4a79a99)
