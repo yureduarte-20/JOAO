@@ -8,6 +8,7 @@ import Spinner from "../../components/Spinner"
 import { useUser } from "../../store/userContext"
 import { Card, Container } from "../../styles/global"
 import { API, useAuthenticateApi } from "../../utils/useApi"
+import ax from 'axios'
 
 import './styles.css'
 const convertToTimeString = (dateString: string): string => {
@@ -43,6 +44,11 @@ export default () => {
             getDoubts()
             setMsg('')
         } catch (e: any) {
+            if(ax.isAxiosError(e)){
+                if(e.response){
+                    alert((e.response as any).data.message)
+                }
+            }
             alert('Algo deu errado')
         } finally {
             setSending(false)
