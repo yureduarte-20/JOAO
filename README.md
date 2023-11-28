@@ -32,6 +32,11 @@ Copiar os arquivos .env.example para .env, estes arquivos são responsáveis por
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - [Node v16](https://nodejs.org/en/blog/release/v16.16.0)
 
+## Técnologias usadas
+- Node
+- Dokcer
+- ReactJS
+
 ### Rodar a aplicação
 Com o docker devidamente instalado, rode o comando abaixo na raiz do projeto
 
