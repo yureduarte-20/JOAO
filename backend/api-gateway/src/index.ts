@@ -34,7 +34,7 @@ function selectProxyHost(req: Request) {
 app.use(Express.json())
 app.use(cors({ origin: process.env.FRONT_CORS_ORIGIN ?? '*' }))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openAPIJSON, {  }));
-app.use('/', (req, res) => res.redirect('/api-docs'))
+//app.use('/', (req, res) => res.redirect('/api-docs'))
 app.use((req, res, next) => {
     return httpProxy(selectProxyHost(req), {
         proxyReqOptDecorator: proxyReqOptDecorator,

@@ -46,4 +46,7 @@ docker compose up --build
 
 Posteriormente abra uma aba em seu navegador de preferência no endereço [http://localhost:3000](http://localhost:3000), as especificações do OpenAPI está na  [http://localhost:3005](http://localhost:3005)
 
+## Credenciais
 
+login: renan@gmail.com
+senha: renan12345
